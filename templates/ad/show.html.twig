@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}L'articles{% endblock %}
+
+{% block body %}
+{% for ad in ad %}
+    {{ ad.title }}
+     {{ ad.price }}
+{% endfor %}
+
+{% endblock %}
