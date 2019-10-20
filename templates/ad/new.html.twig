@@ -1,0 +1,48 @@
+{% extends "base.html.twig" %}
+{% block title %}nouveu Maison{% endblock %}
+
+{% form_theme form _self %}
+{% block body %} 
+<div class="container">
+    <h1>Créer une nouvelle annoncees !!!</h1>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button type="submit" class="btn btn-primary">Creez la nouvelle annonces !!</button>
+    {{ form_end(form) }}
+</div>
+{% endblock %}
+{% block _ad_images_widget %}
+ <P>Ici vous pouvez ajoute l'image de la maison</P>
+    {{ form_widget(form) }}
+    <div class="form-group">
+     <button type="button" id="add-image" class="btn btn-primary">Ajouter une image</button>
+    </div>
+{% endblock %}
+{% block _ad_images_entry_row %}
+    {{ form_widget(form )}}
+{% endblock %}
+
+{% block _ad_images_entry_widget %}
+    <div class="form-group">
+        <div class="row">
+            <div class="col">
+                {{form_widget(form.url)}}
+            </div>
+             <div class="col">
+                {{form_widget(form.legende)}}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+ 
+ <script>
+      $('#add-image').click(function(){
+        const index = $('#ad_images div.form-group').length;
+        const tmpl = $('#ad_images').data('prototype').replace(/__name__/g, index);
+        $('#ad_images').append(tmpl);
+      });
+ </script>
+    
+ {% endblock %}
