@@ -17,19 +17,20 @@ use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class AdType extends AbstractType
 {
-    private function getinformation($titre, $placeholder){
-        return [
+    private function getinformation($titre, $placeholder, $option=[]){
+        return array_merge([
             'label' => $titre,
             'attr' => [
                 'placeholder' => $placeholder
             ]
-        ];
+        ], $option);
     }
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
         ->add('title',TextType::class, $this->getinformation("Titre","Mettez un titre attirant"))
-        ->add('slug',TextType::class, $this->getinformation("Slog","votre slog sera genere de facon automatique"))
+        ->add('slug',TextType::class, $this->getinformation("Slog","votre slog sera genere de facon automatique",
+        ['required' => false]))
         ->add('price', MoneyType::class,  $this->getinformation("Prix par nuit","Mettez votre prix"))
         ->add('introduction',TextType::class, $this->getinformation("Introduction","Mettez un description de votre annonce"))
         ->add('content',TextareaType::class, $this->getinformation("Description","Mettez un contenu sur votre annonce"))
@@ -38,7 +39,8 @@ class AdType extends AbstractType
         ->add('images', CollectionType::class,
         [
             'entry_type'=>ImageType::class,
-            'allow_add' =>true
+            'allow_add' =>true,
+            'allow_delete' =>true
         ])
         ;
     }

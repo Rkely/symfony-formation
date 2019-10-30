@@ -7,10 +7,15 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\AdRepository")
  * @ORM\HasLifecycleCallbacks()
+ * @UniqueEntity(
+ * fields={"title"},
+ * message ="Une autre annonce a deja ce titre")
  */
 class Ad
 {
@@ -23,6 +28,10 @@ class Ad
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     * min =10, max = 100, minMessage = "votre titre doit depassez 10 caractere",
+     * maxMessage = "votre titre ne doit pas depasse 100 caractere")
+     * 
      */
     private $title;
 
@@ -38,6 +47,7 @@ class Ad
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\Length(min=10, max=15, minMessage="Votre introduction doit depasse 20 caractere")
      */
     private $introduction;
 
@@ -58,6 +68,7 @@ class Ad
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Image", mappedBy="ad", orphanRemoval=true)
+     * @Assert\Valid()
      */
     private $images;
 

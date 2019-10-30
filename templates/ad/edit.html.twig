@@ -1,20 +1,20 @@
 {% extends "base.html.twig" %}
-{% block title %}nouveu Maison{% endblock %}
+{% block title %}Modification Maison{% endblock %}
+
 {% form_theme form 'ad/_collection.html.twig' %}
 {% block body %} 
 <div class="container">
-    <h1>Créer une nouvelle annoncees !!!</h1>
+    <h1>Modifier l'annonce {{ad.title}} !!!</h1>
     {{ form_start(form) }}
     {{ form_widget(form) }}
-    <button type="submit" class="btn btn-primary">Creez la nouvelle annonces !!</button>
+    <button type="submit" class="btn btn-primary">Effectuez la modification !!</button>
     {{ form_end(form) }}
 </div>
 {% endblock %}
 
 {% block javascripts %}
  
- <script src="/js/ad.js">
-     
- </script>
-
+ <script src="/js/ad.js"></script>
+ 
+    
  {% endblock %}

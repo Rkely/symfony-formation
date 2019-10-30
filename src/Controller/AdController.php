@@ -24,6 +24,42 @@ class AdController extends AbstractController
             'ads' => $ads
         ]);
     }
+    /**
+     *@Route("/ad/{slug}/edit", name="edite_article")
+     *
+     * @return Response
+     */
+    public function edit(Ad $ad, ObjectManager $manager, Request $request){
+        $form = $this->createForm(AdType::class, $ad);
+
+         $form->handleRequest($request);
+         if($form->isSubmitted()&& $form->isValid()){
+             foreach($ad->getImages() as  $image){
+                 $image->setAd($ad);
+                 $manager->persist($image);
+             }
+             $ad=$form->getData();
+             $manager->persist($ad);
+             $manager->flush();
+             
+             return $this->redirectToRoute('voir_annonce',[
+                 'slug' => $ad->getSlug()
+                 ]);
+                 $this->addFlash(
+                     'succes',
+                     "les  Mofication ont ete effectuer"
+
+                 );
+
+         }
+         
+
+        return $this->render('ad/edit.html.twig',[
+            'form'=>$form->createView(),
+            'ad'=>$ad
+        ]);
+    }
+
      /**
      * @Route("/ad/new", name="nouveau_annonce")
      * 
@@ -32,14 +68,14 @@ class AdController extends AbstractController
     public function new(Request $request, ObjectManager $manager)
     {
         $ad = new Ad();
-        $image = new Image();
-        $image ->setUrl('http://placehold.it/400x200')
-               ->setLegende('Titre 1');
-        $ad->addImage($image);
          $form = $this->createForm(AdType::class, $ad);
          $form->handleRequest($request);
          //$this->addFlash('success','Votre article à bien été enregistrer');
          if($form->isSubmitted() && $form->isValid()){
+             foreach($ad->getImages() as $image){
+                 $image->setAd($ad);
+                 $manager->persist($image);
+             }
              $ad=$form->getData();
              $manager->persist($ad);
              $manager->flush();
