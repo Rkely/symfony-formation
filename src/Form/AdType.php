@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Ad;
 
 use App\Form\ImageType;
+use App\Form \ApplicationType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -15,16 +16,8 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
-class AdType extends AbstractType
+class AdType extends ApplicationType
 {
-    private function getinformation($titre, $placeholder, $option=[]){
-        return array_merge([
-            'label' => $titre,
-            'attr' => [
-                'placeholder' => $placeholder
-            ]
-        ], $option);
-    }
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder

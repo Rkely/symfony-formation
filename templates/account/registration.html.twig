@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+    <div class="container">
+    <h2>Connectez vous sur notre site !!!!</h2>
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <button type="submit" class="btn btn-success">Insrivez vous</button>
+        {{ form_end(form) }}
+    </div>
+        
+{% endblock %}

@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+             <div class="col-md-3">&nbsp;</div>
+             <div class="col-md-6">
+               <div class="bg-light py-3 px-3">
+               <h2>Connectez vous !</h2>
+               {% if (haserror)%}
+               <div class="alert alert-danger">L'adresse ou le mot de passe est incorrectez</div>
+               {% endif %}
+
+                <form action="{{ path('account_login') }}" method="POST">
+                    <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" name="_username" value="{{username}}" id="email" class="form-control" required placeholder="Saissisez votre email...">     
+                    </div>
+                    <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" name="_password" id="password" class="form-control" required placeholder="votre mot de passe..."> 
+                    </div>
+                    <div class="form-group">
+                    <button type="submit" class="btn btn-success">Connexion !!!</button></div>
+                </form>
+               </div>
+             </div>
+        </div>
+    </div>
+{% endblock %}
