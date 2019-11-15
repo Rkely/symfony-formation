@@ -47,12 +47,13 @@ class Ad
 
     /**
      * @ORM\Column(type="text")
-     * @Assert\Length(min=10, max=15, minMessage="Votre introduction doit depasse 20 caractere")
+     * @Assert\Length(min=10, max=50, minMessage="Votre introduction doit depasse 20 caractere")
      */
     private $introduction;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\Length(min=20, max=150, minMessage="Votre description doit depasse 20 caractere")
      */
     private $content;
 

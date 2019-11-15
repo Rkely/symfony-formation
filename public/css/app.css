@@ -12,3 +12,16 @@ div.add-tittle h1, div.add-tittle p
 div.container{
 	margin-top: 20px;
 }
+.avatar {
+	max-width: 128px;
+	max-height: 128px;
+	border-radius: 50%;
+}
+.avatar-medium{
+	max-width: 64px;
+	max-height: 64px;
+}
+.avatar-mini{
+	max-width: 28px;
+	max-height: 28px;
+}

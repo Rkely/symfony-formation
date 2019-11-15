@@ -70,16 +70,16 @@ class AdController extends AbstractController
         $ad = new Ad();
          $form = $this->createForm(AdType::class, $ad);
          $form->handleRequest($request);
-         //$this->addFlash('success','Votre article à bien été enregistrer');
          if($form->isSubmitted() && $form->isValid()){
              foreach($ad->getImages() as $image){
                  $image->setAd($ad);
                  $manager->persist($image);
              }
-             $ad=$form->getData();
+             $ad->setAuthor($this->getUser());
              $manager->persist($ad);
              $manager->flush();
-             
+            // $this->addFlash('success','Votre article à bien été enregistrer');
+                 
              return $this->redirectToRoute('voir_annonce',[
                  'slug' => $ad->getSlug()
                  ]);

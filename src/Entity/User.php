@@ -92,6 +92,9 @@ class User implements UserInterface
 
         }
     }
+    public function fullname(){
+        return $this->firstName.' '.$this->lastName;
+    }
 
     public function __construct()
     {

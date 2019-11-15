@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} de profil de {{user.fullname}}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row  align-items-center">
+         <div class="col-md-3 text-center">
+         <a href="{{path ('user_show', {'slug' : user.slug})}}"></a>
+            <img src="{{user.picture}}" class="avatar mb-3" alt="photo de {{user.fullname}}">
+         </a>
+         <br>
+         <a href="{{path ('user_show', {'slug' : user.slug})}}"></a>
+            <span class="bagde badge-primary">{{user.ads|length}} annonces !!!</span>
+         </a>
+         </div>
+         <div class="col-md-9">
+            <strong> <h2> {{user.fullname}}</h2></strong>
+            {% if user is same as (app.user)%}
+             <div class="mt-3">
+               <a href="{{ path ('account_profile')}}" class="btn btn-primary mr-2 mb-2">Modifier mes informations</a>
+               <a href="{{ path ('password_update')}}" class="btn btn-primary mb-2">Modifier mot de passe</a>
+             </div>
+            {% endif %}
+         </div>
+         <p>{{user.description | raw}}</p>
+      </div>
+         <hr>
+         <strong> <h2> Les annonces de {{user.fullname}}</h2></strong>
+         {% if user.ads|length >0 %}
+            {% for ad in user.ads %}
+            <div class="row">
+				{% include 'ad/_ad.html.twig' %}
+         </div>
+            {% endfor %}
+         {% else %}
+            <div class="alert alert-warning">
+               <p><strong>{{user.fullname}}</strong>  n'a pas d'annonces !!!</p>
+            </div>
+         {% endif %}
+        
+    </div>
+{% endblock %}

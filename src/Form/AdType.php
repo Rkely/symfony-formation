@@ -25,8 +25,8 @@ class AdType extends ApplicationType
         ->add('slug',TextType::class, $this->getinformation("Slog","votre slog sera genere de facon automatique",
         ['required' => false]))
         ->add('price', MoneyType::class,  $this->getinformation("Prix par nuit","Mettez votre prix"))
-        ->add('introduction',TextType::class, $this->getinformation("Introduction","Mettez un description de votre annonce"))
-        ->add('content',TextareaType::class, $this->getinformation("Description","Mettez un contenu sur votre annonce"))
+        ->add('introduction',TextType::class, $this->getinformation("Introduction","Mettez une description annonce"))
+        ->add('content', TextareaType::class, $this->getinformation("Description","Mettez un contenu"))
         ->add('coverImage',UrlType::class, $this->getinformation("Image","Mettez une image attirant"))
         ->add('rooms',IntegerType::class,$this->getinformation("Nombre de chambres","Mettez le nombre de chambres"))
         ->add('images', CollectionType::class,
