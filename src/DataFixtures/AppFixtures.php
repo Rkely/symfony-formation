@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Ad;
 use Faker\Factory;
+use App\Entity\Role;
 use App\Entity\User;
 use App\Entity\Image;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -20,6 +21,20 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $faker = Factory::create('FR-fr');
+        $adminrole = new Role();
+        $adminrole->setTitle('ROLE_ADMIN');
+        $manager->persist($adminrole);
+
+        $useradmin = new User();
+        $useradmin->setFirstName('TELLY')
+                  ->setLastName('issa')
+                  ->setEmail('tellyissa@gmail.com')
+                  ->setPicture('https://avatars.io/twitter/LiiorC')
+                  ->setHash($this->encoder->encodePassword($useradmin,'password'))
+                  ->setIntroduction($faker->sentence())
+                  ->setDescription('<p>'. join('<p></p>',$faker->paragraphs(2)) .'</p>')
+                  ->addUserRole($adminrole);
+                   $manager->persist($useradmin);
         $tabuser=[];
         $genres = ['male','female'];
         for($i =0 ; $i<10 ; $i++){

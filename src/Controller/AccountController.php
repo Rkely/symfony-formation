@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -58,6 +59,7 @@ class AccountController extends AbstractController
     }
     /**
      * @Route("/compte/profile", name="account_profile")
+     * @IsGranted("ROLE_USER")
      */
     public function profile(Request $request, ObjectManager $manager){
         $user = $this->getUser();
@@ -77,7 +79,19 @@ class AccountController extends AbstractController
         ]);
     }
      /**
+      * permet de voir un user
+     * @Route("/mycompte", name="my_compte")
+     * @IsGranted("ROLE_USER")
+     */
+    public function mycompte()
+    {
+        return $this->render('user/index.html.twig', [
+            'user' => $this->getUser(),
+        ]);
+    }
+     /**
      * @Route("/change/password", name="password_update")
+     * @IsGranted("ROLE_USER")
      */
     public function changemotdepasse(Request $request, ObjectManager $manager,UserPasswordEncoderInterface $encoder){
         $user = $this->getUser();

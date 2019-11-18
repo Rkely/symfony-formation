@@ -8,7 +8,12 @@
 			<h1>{{ad.title}}</h1>
 			<p>{{ad.introduction}}</p>
 			<p><strong>{{ad.rooms}} Chambres </strong>pour <strong>{{ad.price}}</strong> FCFA par nuits</p>
-			<div class="btn btn-success left">Reservez !!!</div>
+			<a href$"#" class="btn btn-success">Reservez !!!</a>
+			{% if app.user and app.user == ad.getAuthor() %}
+			<a href="{{ path('edite_article',{'slug' :ad.slug})}}" class="btn btn-primary">Modifier</a>
+			<a href="{{ path('supprimer_article',{'slug' :ad.slug})}}" class="btn btn-danger"
+			onClick="return confirm(`vous voulez supprimer {{ad.title}}`)">Supprimer</a>
+			{% endif %}
 		</div>
 		
 	</div>

@@ -18,7 +18,10 @@
 					<p class="card-text">
 						{{ad.introduction}}
 					</p>
-					<a href="{{url}}" class="btn btn-success float-right">En savoir plus</a>	
+					<a href="{{url}}" class="btn btn-success float-right">En savoir plus</a>
+					{% if app.user and app.user == ad.getAuthor() %}
+			        <a href="{{ path('edite_article',{'slug' :ad.slug})}}" class="btn btn-primary">modifier</a>
+			        {% endif %}	
 				</div>
 			</div>
 		</div>
