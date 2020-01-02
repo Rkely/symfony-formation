@@ -1,10 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} de profil de {{user.fullname}}{% endblock %}
+{% block title %}Profil de {{user.fullname}}{% endblock %}
 
 {% block body %}
     <div class="container">
-        <div class="row  align-items-center">
+        <div class="row  align-items-center mb-5">
          <div class="col-md-3 text-center">
          <a href="{{path ('user_show', {'slug' : user.slug})}}"></a>
             <img src="{{user.picture}}" class="avatar mb-3" alt="photo de {{user.fullname}}">
@@ -31,9 +31,9 @@
             {% for ad in user.ads %}
             <div class="row">
 				{% include 'ad/_ad.html.twig' %}
-         </div>
+            </div>
             {% endfor %}
-         {% else %}
+            {% else %}
             <div class="alert alert-warning">
                <p><strong>{{user.fullname}}</strong>  n'a pas d'annonces !!!</p>
             </div>

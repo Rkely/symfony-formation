@@ -3,7 +3,15 @@
 			<div class="card" style="width:18rem;">
 				<div class="card-header text-center">
 					{{ad.rooms}} Chambre,<strong> {{ad.price}} FCFA/nuit</strong><br>
-					<small>pas encore note!</small>
+					{% if ad.comments | length > 0 %}
+					{% include 'partiels/rating.html.twig' with {'rating': ad.avgRatings} %} <br>
+					     <small> Calcule sur {{ ad.comments|length }} avis !</small>
+					{% else %}
+						<small>Pas d'avis !!!</small>	
+					{% endif %}
+					
+						
+					
 				</div>
 				<a href="{{url}}">
 				<img src="{{ ad.coverImage }}" alt="image-avatar" class="float-left" style="width: 100%;
@@ -18,7 +26,7 @@
 					<p class="card-text">
 						{{ad.introduction}}
 					</p>
-					<a href="{{url}}" class="btn btn-success float-right">En savoir plus</a>
+					<a href="{{url}}" class="btn btn-primary float-right">En savoir plus</a>
 					{% if app.user and app.user == ad.getAuthor() %}
 			        <a href="{{ path('edite_article',{'slug' :ad.slug})}}" class="btn btn-primary">modifier</a>
 			        {% endif %}	

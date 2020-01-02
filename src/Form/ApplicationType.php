@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 
  class ApplicationType extends AbstractType{
      protected function getinformation($titre, $placeholder, $option=[]){
-        return array_merge([
+        return array_merge_recursive([
             'label' => $titre,
             'attr' => [
                 'placeholder' => $placeholder

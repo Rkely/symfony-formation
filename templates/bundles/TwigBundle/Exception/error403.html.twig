@@ -1,0 +1,14 @@
+{% extends "base.html.twig" %}
+{% block title %} Pas d'autorisation {% endblock %}
+{% block body %}
+ <div class="container">
+ <h1> Vous voullez boussillez le site</h1>
+ <div class="alert alert-danger">
+ <p>
+ Vous n'avez pas ce droit
+ </p>
+ </div>
+ <a href="{{path ('homepage')}}" class="btn btn-primary">Accueil</a>
+<a href="{{path ('voirs_annonces')}}" class="btn btn-primary">Liste des annonces !!!</a>
+ </div>
+{% endblock %}

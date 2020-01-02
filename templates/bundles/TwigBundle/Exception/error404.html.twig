@@ -1,0 +1,10 @@
+{% extends "base.html.twig" %}
+{% block title %} Page non trouvée{% endblock %}
+{% block body %}
+<div class="container">
+<h1>OUps la page que vous recherche est introuvable !!!</h1>
+<p>Merci de vous rendre sur sur ces pages</p>
+<a href="{{path ('homepage')}}" class="btn btn-primary">Accueil</a>
+<a href="{{path ('voirs_annonces')}}" class="btn btn-primary">Liste des annonces !!!</a>
+</div>
+{% endblock %}
