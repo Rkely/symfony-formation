@@ -58,7 +58,7 @@ class AppFixtures extends Fixture
             $tabuser[]=$user;
 
         }
-        for($i =0 ; $i< 10 ;$i++){
+        for($i =0 ; $i< 50 ;$i++){
         $Ad = new Ad();
         $title = $faker->sentence;
         $slug = $title;
