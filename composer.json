@@ -31,10 +31,10 @@
         "symfony/web-link": "4.3.*",
         "symfony/webpack-encore-bundle": "^1.7",
         "symfony/yaml": "4.3.*",
+        "fzaninotto/faker": "^1.8",
         "doctrine/doctrine-fixtures-bundle": "^3.2"
     },
     "require-dev": {
-        "fzaninotto/faker": "^1.8",
         "symfony/debug-pack": "*",
         "symfony/maker-bundle": "^1.0",
         "symfony/profiler-pack": "*",
