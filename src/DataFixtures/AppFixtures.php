@@ -22,7 +22,8 @@ class AppFixtures extends Fixture
     }
     public function load(ObjectManager $manager)
     {
-        $faker = Factory::create('fr_FR');
+        
+        $faker = Factory::create();
         $adminrole = new Role();
         $adminrole->setTitle('ROLE_ADMIN');
         $manager->persist($adminrole);
