@@ -9,8 +9,8 @@ use App\Entity\User;
 use App\Entity\Image;
 use App\Entity\Booking;
 use App\Entity\Comment;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AppFixtures extends Fixture
@@ -20,16 +20,16 @@ class AppFixtures extends Fixture
     public function __construct(UserPasswordEncoderInterface $encoder){
         $this->encoder = $encoder;
     }
-    public function load(ObjectManager $manager)
+    public function load(EntityManagerInterface $manager)
     {
-        $faker = Factory::create('fr-FR');
+        $faker = Factory::create('fr_FR');
         $adminrole = new Role();
         $adminrole->setTitle('ROLE_ADMIN');
         $manager->persist($adminrole);
 
         $useradmin = new User();
         $useradmin->setFirstName('TELLY')
-                  ->setLastName('issa')
+                  ->setLastName('Issa')
                   ->setEmail('tellyissa@gmail.com')
                   ->setPicture('https://secure.gravatar.com/avatar/fa24afd4f58c7b6ffe0e2c8c58659681?s=64')
                   ->setHash($this->encoder->encodePassword($useradmin,'password'))
