@@ -6,8 +6,8 @@ use App\Entity\Ad;
 use App\Form\AdType;
 use App\Entity\Image;
 use App\Repository\AdRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -23,7 +23,7 @@ class AdController extends AbstractController
      * 
      * @return Response
      */
-    public function new(Request $request, ObjectManager $manager)
+    public function new(Request $request, EntityManagerInterface $manager)
     {
         $ad = new Ad();
          $form = $this->createForm(AdType::class, $ad);
@@ -63,7 +63,7 @@ class AdController extends AbstractController
      *@Security("is_granted('ROLE_USER') and user === ad.getAuthor()", message ="vous n'etez pas le proprietaire")
      * @return Response
      */
-    public function edit(Ad $ad, ObjectManager $manager, Request $request){
+    public function edit(Ad $ad, EntityManagerInterface $manager, Request $request){
         $form = $this->createForm(AdType::class, $ad);
 
          $form->handleRequest($request);
@@ -112,10 +112,10 @@ class AdController extends AbstractController
      * @Security("is_granted('ROLE_USER') and user === ad.getAuthor()")
      *@Route("article/supprimer/{slug}", name="supprimer_article")
      * @param Ad $ad
-     * @param ObjectManager $manager
+     * @param EntityManagerInterface $manager
      * @return void
      */
-    public function delete_article(Ad $ad, ObjectManager $manager){
+    public function delete_article(Ad $ad, EntityManagerInterface $manager){
         $manager->remove($ad);
         $manager->flush();
 

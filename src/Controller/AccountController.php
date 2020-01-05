@@ -8,10 +8,9 @@ use App\Entity\PasswordUpade;
 use App\Form\RegistrationType;
 use App\Form\PasswordUpdateType;
 use Symfony\Component\Form\FormError;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
@@ -38,7 +37,7 @@ class AccountController extends AbstractController
      /**
      * @Route("/Inscription", name="account_inscription")
      */
-    public function register(Request $request, ObjectManager $manager, UserPasswordEncoderInterface $encoder){
+    public function register(Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder){
         $user = new User();
         $form = $this->createForm(RegistrationType::class, $user);
         $form->handleRequest($request);
@@ -61,7 +60,7 @@ class AccountController extends AbstractController
      * @Route("/compte/profile", name="account_profile")
      * @IsGranted("ROLE_USER")
      */
-    public function profile(Request $request, ObjectManager $manager){
+    public function profile(Request $request, EntityManagerInterface $manager){
         $user = $this->getUser();
         $form = $this->createForm(AccountType::class, $user);
         $form->handleRequest($request);
@@ -93,7 +92,7 @@ class AccountController extends AbstractController
      * @Route("/change/password", name="password_update")
      * @IsGranted("ROLE_USER")
      */
-    public function changemotdepasse(Request $request, ObjectManager $manager,UserPasswordEncoderInterface $encoder){
+    public function changemotdepasse(Request $request, EntityManagerInterface $manager,UserPasswordEncoderInterface $encoder){
         $user = $this->getUser();
         $motdepasse = new PasswordUpade();
         $form = $this->createForm(PasswordUpdateType::class, $motdepasse);
