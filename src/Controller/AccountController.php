@@ -19,7 +19,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class AccountController extends AbstractController
 {
     /**
-     * @Route("https://formation-it.herokuapp.com/account", name="account_login")
+     * @Route("/account", name="account_login")
      */
     public function login(AuthenticationUtils $utils)
     {
