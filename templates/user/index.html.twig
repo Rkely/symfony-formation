@@ -28,10 +28,8 @@
          <hr>
          <strong> <h2> Les annonces de {{user.fullname}}</h2></strong>
          {% if user.ads|length >0 %}
-            {% for ad in user.ads %}
-            <div class="row">
+            {% for ad in user.ads %} 
 				{% include 'ad/_ad.html.twig' %}
-            </div>
             {% endfor %}
             {% else %}
             <div class="alert alert-warning">

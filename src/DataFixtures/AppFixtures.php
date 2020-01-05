@@ -31,7 +31,7 @@ class AppFixtures extends Fixture
         $useradmin->setFirstName('TELLY')
                   ->setLastName('issa')
                   ->setEmail('tellyissa@gmail.com')
-                  ->setPicture('https://avatars.io/twitter/LiiorC')
+                  ->setPicture('https://secure.gravatar.com/avatar/fa24afd4f58c7b6ffe0e2c8c58659681?s=64')
                   ->setHash($this->encoder->encodePassword($useradmin,'password'))
                   ->setIntroduction($faker->sentence())
                   ->setDescription('<p>'. join('<p></p>',$faker->paragraphs(2)) .'</p>')

@@ -1,0 +1,51 @@
+@import url('./bootstrap.min.css');
+div.add-tittle{
+	background-size: cover;
+	background-position: center center;
+	padding: 2px;
+}
+div.add-tittle h1, div.add-tittle p
+{
+	color: white;
+	text-shadow: 3px 3px 3px rgba(0,0,0,0)
+}
+div.add-tittle .btn{
+	margin-top: 2em;
+	font-size: 1.2em;
+	line-height: 1.5em;
+}
+.alert a{
+	text-decoration: none;
+}
+.alert .btn{
+	color: white;
+}
+#accountDropdownLink{
+	text-decoration: none;
+}
+div.container, div.container-fluid{
+	margin-top: 20px;
+}
+.avatar {
+	max-width: 128px;
+	max-height: 128px;
+	border-radius: 50%;
+}
+.avatar-medium{
+	max-width: 64px;
+	max-height: 64px;
+}
+.avatar-mini{
+	max-width: 28px;
+	max-height: 28px;
+}
+.avatar-micro{
+	max-width: 20px;
+	max-height: 20px;
+}
+.datepicker table tr td.disabled, .datepicker table tr td.disabled:hover{
+	color: red !important;
+}
+span.rating i {
+	color : goldenrod;
+}
