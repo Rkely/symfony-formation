@@ -9,7 +9,7 @@ class MonCvController extends AbstractController {
      * @Route("/telly-issa-cv", name="moncv")
      */
     public function home(){
-        return $this->render('moncv/moncv.html');
+        return $this->render('moncv/moncv.html.twig');
     }
 }
 ?>
